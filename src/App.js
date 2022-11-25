@@ -1,56 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, { useState } from 'react';
+import Modal from './components/Modal';
+import AddNFT from './components/nft/AddNFT';
+import ApproveSpender from './components/nft/ApproveSpender';
+import Transfer from './components/nft/Transfer';
 
 function App() {
+  const [show, setShow] = useState(false)
+  const [showT, setShowT] = useState(false)
+  const [showA, setShowA] = useState(false)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <div className="p-6 flex justify-center">
+      <Modal close={() => setShow(false)} show={show} title='MINT'>
+        <AddNFT close={() => setShow(false)} />
+      </Modal>
+      <Modal close={() => setShowT(false)} show={showT} title='TRANSFER'>
+        <Transfer close={() => setShowT(false)}/>
+      </Modal>
+      <Modal close={() => setShowA(false)} show={showA} title='APPROVE SPENDER'>
+        <ApproveSpender close={() => setShowA(false)}/>
+      </Modal>
+      <div className='flex space-x-2'>
+        <button onClick={() => setShow(true)} className='bg-sky-500 p-2 px-4 rounded-full text-white font-semibold'>MINT</button>
+        <button onClick={() => setShowT(true)} className='bg-sky-500 p-2 px-4 rounded-full text-white font-semibold'>TRANSFER</button>
+        <button onClick={() => setShowA(true)} className='bg-sky-500 p-2 px-4 rounded-full text-white font-semibold'>APPROVE SPENDER</button>
+      </div>
     </div>
   );
 }
