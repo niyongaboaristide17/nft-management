@@ -24,7 +24,10 @@ const AddNFT = (props) => {
 		}
 		
 		try {
-			await contract.mint(toRef.current.value, tokenIdRef.current.value, imageRef.current.value )
+			const res = await contract.mint(toRef.current.value, tokenIdRef.current.value, imageRef.current.value )
+			
+			const responseTx = await res.wait()
+			console.log(responseTx);
 			console.log('minted successfully');
 		} catch (error) {
 			console.log(error);
