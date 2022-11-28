@@ -8,12 +8,15 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount, useConnect, useDisconnect } from 'wagmi'
 import { InjectedConnector } from 'wagmi/connectors/injected'
 
+import contract from './appContract/contract'
 
 function App() {
   const [show, setShow] = useState(false)
   const [showT, setShowT] = useState(false)
   const [showA, setShowA] = useState(false)
 
+
+  console.log();
 
   const { address, isConnected } = useAccount()
   const { connect } = useConnect({
@@ -32,7 +35,7 @@ function App() {
       <Modal close={() => setShowA(false)} show={showA} title='APPROVE SPENDER'>
         <ApproveSpender close={() => setShowA(false)} />
       </Modal>
-      <div className='flex space-x-2'>
+      <div className='flex flex-col md:flex-row sm:space-y-2 md:space-x-2'>
         <button onClick={() => setShow(true)} className='bg-sky-500 p-2 px-4 rounded-full text-white font-semibold'>MINT</button>
         <button onClick={() => setShowT(true)} className='bg-sky-500 p-2 px-4 rounded-full text-white font-semibold'>TRANSFER</button>
         <button onClick={() => setShowA(true)} className='bg-sky-500 p-2 px-4 rounded-full text-white font-semibold'>APPROVE SPENDER</button>
